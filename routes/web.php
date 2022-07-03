@@ -20,13 +20,16 @@ Route::get('/login', function(){ return 'Login'; })->name('site.login');
 
 Route::prefix('/app')->group(function () {
     Route::get('/customers', function(){ return 'Customers'; })->name('app.customers');
-    Route::get('/providers', function(){ return 'Providers'; })->name('app.providers');
+    Route::get('/providers', 'ProvidersController@index')->name('app.providers');
     Route::get('/products', function(){ return 'Products'; })->name('app.products');
 });
 
+// TRABALHANDO COM REDIRECIONAMENTO
+Route::get('/test/{p1}/{p2}', 'TestController@test')->name('test');
+// FALLBACK
 
-/*
-Route::get('/contact/{name}/{category_id}', function(string $name = 'Unamed', int $category_id = 1) {
-    echo 'Hello ' . $name .'<br>'. $category_id ;
-})->where('category_id', '[0-9]+')->where('name', '[A-Za-z]+');
-*/
+Route::fallback(function () {
+    echo 'This page does not exist. ' . '<a href="'.route('site.index').'">Back to Home.</a>';
+});
+
+// ENCAMINHAR PARAMETROS
