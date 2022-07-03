@@ -16,6 +16,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', 'MainController@main')->name('site.index');
 Route::get('/about', 'AboutController@about')->name('site.about');
 Route::get('/contact', 'ContactController@contact')->name('site.contact');
+Route::post('/contact', 'ContactController@contact')->name('site.contact');
 Route::get('/login', function(){ return 'Login'; })->name('site.login');
 
 Route::prefix('/app')->group(function () {
@@ -24,8 +25,8 @@ Route::prefix('/app')->group(function () {
     Route::get('/products', function(){ return 'Products'; })->name('app.products');
 });
 
-// TRABALHANDO COM REDIRECIONAMENTO
-Route::get('/test/{p1}/{p2}', 'TestController@test')->name('test');
+// // TRABALHANDO COM REDIRECIONAMENTO
+// Route::get('/test/{p1}/{p2}', 'TestController@test')->name('test');
 // FALLBACK
 
 Route::fallback(function () {
