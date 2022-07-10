@@ -7,10 +7,10 @@
     <br>
     <input name="email" value="{{old('email')}}" type="text" placeholder="E-mail" class="{{$class}}">
     <br>
-    <select name="reason_contact" class="{{$class}}">
+    <select name="reason_contacts_id" class="{{$class}}">
         <option value="">Qual o motivo do contato?</option>
         @foreach ($reason_contacts as $key => $reason_contact)
-            <option value="{{$reason_contact->id}}" {{ old('reason_contact') == $reason_contact->id ? 'selected' : ''}}>{{$reason_contact->reason_contact}}</option>
+            <option value="{{$reason_contact->id}}" {{ old('reason_contacts_id') == $reason_contact->id ? 'selected' : ''}}>{{$reason_contact->reason_contact}}</option>
         @endforeach
     </select>
     <br>
