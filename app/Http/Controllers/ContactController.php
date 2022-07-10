@@ -8,7 +8,13 @@ use App\SiteContact;
 class ContactController extends Controller
 {
     public function contact(Request $request) {
-        return view('site.contact');
+        $reason_contacts = [
+            '1' => 'Dúvida',
+            '2' => 'Elogio',
+            '3' => 'Reclamação',
+        ];
+
+        return view('site.contact', ['reason_contacts' => $reason_contacts]);
     }
 
     public function save(Request $request) {
