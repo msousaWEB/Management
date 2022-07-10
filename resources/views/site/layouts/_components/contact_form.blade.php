@@ -1,11 +1,11 @@
 {{$slot}}
 <form action={{route('site.contact')}} method="POST">
     @csrf
-    <input name="name" type="text" placeholder="Nome" class="{{$class}}">
+    <input name="name" value="{{old('name')}}" type="text" placeholder="Nome" class="{{$class}}">
     <br>
-    <input name="tel" type="text" placeholder="Telefone" class="{{$class}}">
+    <input name="tel" value="{{old('tel')}}" type="text" placeholder="Telefone" class="{{$class}}">
     <br>
-    <input name="email" type="text" placeholder="E-mail" class="{{$class}}">
+    <input name="email" value="{{old('email')}}" type="text" placeholder="E-mail" class="{{$class}}">
     <br>
     <select name="reason_contact" class="{{$class}}">
         <option value="">Qual o motivo do contato?</option>
@@ -14,7 +14,7 @@
         <option value="3">Reclamação</option>
     </select>
     <br>
-    <textarea name="message" class="{{$class}}" placeholder="Preencha aqui a sua mensagem"></textarea>
+    <textarea name="message" class="{{$class}}">{{(old('message') != '') ? old('message') : 'Preencha aqui a sua mensagem'}}</textarea>
     <br>
     <button type="submit" class="{{$class}}">ENVIAR</button>
 </form>
