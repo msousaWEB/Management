@@ -3,16 +3,12 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\SiteContact;
+use App\ReasonContact;
 
 class ContactController extends Controller
 {
     public function contact(Request $request) {
-        $reason_contacts = [
-            '1' => 'Dúvida',
-            '2' => 'Elogio',
-            '3' => 'Reclamação',
-        ];
+        $reason_contacts = ReasonContact::all();
 
         return view('site.contact', ['reason_contacts' => $reason_contacts]);
     }
