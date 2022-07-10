@@ -7,7 +7,7 @@
     <br>
     <input name="email" type="text" placeholder="E-mail" class="{{$class}}">
     <br>
-    <select class="{{$class}}">
+    <select name="reason_contact" class="{{$class}}">
         <option value="">Qual o motivo do contato?</option>
         <option value="1">Dúvida</option>
         <option value="2">Elogio</option>
