@@ -16,11 +16,14 @@ class LogAccessMiddleware
      */
     public function handle($request, Closure $next)
     {
-        // return $next($request);
         $ip = $request->server->get('REMOTE_ADDR');
         $route = $request->getRequestUri();
 
         LogAccess::create(['log' => "This IP: ($ip), requested route: $route"]);
-        return Response('Teste');
+        // return $next($request);
+        $response = $next($request);
+        $response->setStatusCode(201,'Teste');
+
+        return $response;
     }
 }

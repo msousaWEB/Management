@@ -13,13 +13,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', 'MainController@main')->name('site.index');
+Route::get('/', 'MainController@main')->name('site.index')->middleware('log.access');
 Route::get('/about', 'AboutController@about')->name('site.about');
 Route::get('/contact', 'ContactController@contact')->name('site.contact');
 Route::post('/contact', 'ContactController@save')->name('site.contact');
 Route::get('/login', function(){ return 'Login'; })->name('site.login');
 
-Route::prefix('/app')->group(function () {
+Route::middleware('authentication:default,visitor')->prefix('/app')->group(function () {
     Route::get('/customers', function(){ return 'Customers'; })->name('app.customers');
     Route::get('/providers', 'ProvidersController@index')->name('app.providers');
     Route::get('/products', function(){ return 'Products'; })->name('app.products');
