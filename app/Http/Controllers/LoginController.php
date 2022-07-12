@@ -48,7 +48,7 @@ class LoginController extends Controller
             $_SESSION['name'] = $exists->name;
             $_SESSION['email'] = $exists->email;
 
-            return redirect()->route('app.customers');
+            return redirect()->route('app.home');
         } else {
             return redirect()->route('site.login', ['error' => 1]);
         }

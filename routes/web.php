@@ -23,7 +23,7 @@ Route::post('/login', 'LoginController@auth')->name('site.login');
 Route::middleware('authentication:default,visitor')->prefix('/app')->group(function () {
     Route::get('/customer', 'CustomerController@index')->name('app.customer');
     Route::get('/provider', 'ProvidersController@index')->name('app.provider');
-    Route::get('/product', 'ProductContoller@index')->name('app.product');
+    Route::get('/product', 'ProductController@index')->name('app.product');
     Route::get('/home', 'HomeController@index')->name('app.home');
     Route::get('/quit', 'LoginController@quit')->name('app.quit');
 });
