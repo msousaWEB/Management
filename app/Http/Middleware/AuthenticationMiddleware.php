@@ -15,14 +15,11 @@ class AuthenticationMiddleware
      */
     public function handle($request, Closure $next, $auth_method, $profile)
     {
-        if($auth_method == 'default'){
-
-        }
-        //Verifica se o usuário possui permissão
-        if(true){
+        session_start();
+        if(isset($_SESSION['email']) && $_SESSION['email'] != '') {
             return $next($request);
         } else {
-            return Response('Acesso negado!');
+            return redirect()->route('site.login', ['error' => 2]);
         }
     }
 }

@@ -12,6 +12,9 @@ class LoginController extends Controller
         if($request->get('error') == 1) {
             $error = 'Usuário e / ou senha incorretos!';
         }
+        if($request->get('error') == 2) {
+            $error = 'É necessário estar logado para acessar esta página.';
+        }
 
         return view('site.login', ['title' => 'Login', 'error' => $error]);
     }
@@ -41,7 +44,11 @@ class LoginController extends Controller
         $exists = $exists->first();
 
         if(isset($exists->name)) {
+            session_start();
+            $_SESSION['name'] = $exists->name;
+            $_SESSION['email'] = $exists->email;
 
+            return redirect()->route('app.customers');
         } else {
             return redirect()->route('site.login', ['error' => 1]);
         }
