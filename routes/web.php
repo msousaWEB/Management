@@ -17,7 +17,8 @@ Route::get('/', 'MainController@main')->name('site.index')->middleware('log.acce
 Route::get('/about', 'AboutController@about')->name('site.about');
 Route::get('/contact', 'ContactController@contact')->name('site.contact');
 Route::post('/contact', 'ContactController@save')->name('site.contact');
-Route::get('/login', function(){ return 'Login'; })->name('site.login');
+Route::get('/login/{error?}', 'LoginController@index')->name('site.login');
+Route::post('/login', 'LoginController@auth')->name('site.login');
 
 Route::middleware('authentication:default,visitor')->prefix('/app')->group(function () {
     Route::get('/customers', function(){ return 'Customers'; })->name('app.customers');
