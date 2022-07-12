@@ -21,9 +21,11 @@ Route::get('/login/{error?}', 'LoginController@index')->name('site.login');
 Route::post('/login', 'LoginController@auth')->name('site.login');
 
 Route::middleware('authentication:default,visitor')->prefix('/app')->group(function () {
-    Route::get('/customers', function(){ return 'Customers'; })->name('app.customers');
-    Route::get('/providers', 'ProvidersController@index')->name('app.providers');
-    Route::get('/products', function(){ return 'Products'; })->name('app.products');
+    Route::get('/customer', 'CustomerController@index')->name('app.customer');
+    Route::get('/provider', 'ProvidersController@index')->name('app.provider');
+    Route::get('/product', 'ProductContoller@index')->name('app.product');
+    Route::get('/home', 'HomeController@index')->name('app.home');
+    Route::get('/quit', 'LoginController@quit')->name('app.quit');
 });
 
 // // TRABALHANDO COM REDIRECIONAMENTO
