@@ -11,8 +11,16 @@ class ProvidersController extends Controller
         return view('app.provider.index');
     }
 
-    public function list(){
-        return view('app.provider.list_provider');
+    public function list(Request $request){
+
+
+        $providers = Provider::where('name', 'LIKE', '%'.$request->input('name').'%')
+        ->where('site', 'LIKE', '%'.$request->input('site').'%')
+        ->where('uf', 'LIKE', '%'.$request->input('uf').'%')
+        ->where('email', 'LIKE', '%'.$request->input('email').'%')
+        ->get();
+
+        return view('app.provider.list_provider', ['providers' => $providers]);
     }
 
     public function add(Request $request){

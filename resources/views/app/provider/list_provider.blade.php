@@ -16,8 +16,31 @@
         </div>
 
         <div class="informacao-pagina">
-            <div style="width: 30%; margin-left: auto; margin-right: auto;">
-                ...Listar...
+            <div style="width: 90%; margin-left: auto; margin-right: auto;">
+                <table border="1" width="100%">
+                    <thead>
+                        <tr>
+                            <th>Nome</th>
+                            <th>Site</th>
+                            <th>UF</th>
+                            <th>Email</th>
+                            <th></th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach ($providers as $p)
+                            <tr>
+                                <td>{{$p->name}}</td>
+                                <td>{{$p->site}}</td>
+                                <td>{{$p->uf}}</td>
+                                <td>{{$p->email}}</td>
+                                <td>Excluir</td>
+                                <td>Editar</td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
             </div>
         </div>
     </div>
