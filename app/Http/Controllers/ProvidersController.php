@@ -18,9 +18,9 @@ class ProvidersController extends Controller
         ->where('site', 'LIKE', '%'.$request->input('site').'%')
         ->where('uf', 'LIKE', '%'.$request->input('uf').'%')
         ->where('email', 'LIKE', '%'.$request->input('email').'%')
-        ->get();
+        ->paginate(5);
 
-        return view('app.provider.list_provider', ['providers' => $providers]);
+        return view('app.provider.list_provider', ['providers' => $providers, 'request' => $request->all()]);
     }
 
     public function add(Request $request){

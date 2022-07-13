@@ -41,6 +41,7 @@
                         @endforeach
                     </tbody>
                 </table>
+                {{$providers->appends($request)->links()}}
             </div>
         </div>
     </div>

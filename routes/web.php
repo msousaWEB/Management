@@ -29,6 +29,7 @@ Route::middleware('authentication:default,visitor')->prefix('/app')->group(funct
 
     /////////////////////////////////////////////////////////////////
     Route::post('/provider/list_provider', 'ProvidersController@list')->name('app.provider.list');
+    Route::get('/provider/list_provider', 'ProvidersController@list')->name('app.provider.list');
     Route::get('/provider/add_provider', 'ProvidersController@add')->name('app.provider.add');
     Route::post('/provider/add_provider', 'ProvidersController@add')->name('app.provider.add');
     Route::get('/provider/edit_provider/{id}/{msg?}', 'ProvidersController@edit')->name('app.provider.edit');
