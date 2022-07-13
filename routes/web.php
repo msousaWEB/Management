@@ -26,6 +26,12 @@ Route::middleware('authentication:default,visitor')->prefix('/app')->group(funct
     Route::get('/product', 'ProductController@index')->name('app.product');
     Route::get('/home', 'HomeController@index')->name('app.home');
     Route::get('/quit', 'LoginController@quit')->name('app.quit');
+
+    /////////////////////////////////////////////////////////////////
+    Route::post('/provider/list_provider', 'ProvidersController@list')->name('app.provider.list');
+    Route::get('/provider/add_provider', 'ProvidersController@add')->name('app.provider.add');
+    Route::post('/provider/add_provider', 'ProvidersController@add')->name('app.provider.add');
+
 });
 
 // // TRABALHANDO COM REDIRECIONAMENTO
