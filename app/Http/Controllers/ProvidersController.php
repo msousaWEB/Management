@@ -26,7 +26,7 @@ class ProvidersController extends Controller
     public function add(Request $request){
         $msg = '';
 
-        if($request->input('_token') != '') {
+        if($request->input('_token') != '' && $request->input('id') == '') {
             $rules = [
                 'name'  => 'required|min:4|max:40',
                 'site'  => 'required',
@@ -51,6 +51,26 @@ class ProvidersController extends Controller
             $msg = 'Cadastro realizado com sucesso!';
         }
 
+        //Editar 
+        if($request->input('_token') != '' && $request->input('id') != '') {
+            $provider = Provider::find($request->input('id'));
+            $update = $provider->update($request->all());
+
+            if($update) {
+                $msg = 'Atualização realizada com sucesso!';
+            } else {
+                $msg = 'Falha na atualização do fornecedor.';
+            }
+
+            return redirect()->route('app.provider.edit', ['id' => $request->input('id'), 'msg' => $msg]);
+        }
+
         return view('app.provider.add_provider', ['msg' => $msg]);
+    }
+
+    public function edit($id, $msg = '') {
+        $provider = Provider::find($id);
+
+        return view('app.provider.add_provider', ['provider' => $provider, 'msg' => $msg]);
     }
 }
