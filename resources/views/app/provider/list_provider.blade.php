@@ -42,6 +42,8 @@
                     </tbody>
                 </table>
                 {{$providers->appends($request)->links()}}
+                <br>
+                Exibindo {{$providers->count()}} de {{$providers->total()}} resultados.
             </div>
         </div>
     </div>
