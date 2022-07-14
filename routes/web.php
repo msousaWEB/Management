@@ -33,6 +33,7 @@ Route::middleware('authentication:default,visitor')->prefix('/app')->group(funct
     Route::get('/provider/add_provider', 'ProvidersController@add')->name('app.provider.add');
     Route::post('/provider/add_provider', 'ProvidersController@add')->name('app.provider.add');
     Route::get('/provider/edit_provider/{id}/{msg?}', 'ProvidersController@edit')->name('app.provider.edit');
+    Route::get('/provider/delete_provider/{id}', 'ProvidersController@delete')->name('app.provider.delete');
 
 });
 

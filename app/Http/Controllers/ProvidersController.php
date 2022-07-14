@@ -18,7 +18,7 @@ class ProvidersController extends Controller
         ->where('site', 'LIKE', '%'.$request->input('site').'%')
         ->where('uf', 'LIKE', '%'.$request->input('uf').'%')
         ->where('email', 'LIKE', '%'.$request->input('email').'%')
-        ->paginate(10);
+        ->paginate(5);
 
         return view('app.provider.list_provider', ['providers' => $providers, 'request' => $request->all()]);
     }
@@ -72,5 +72,13 @@ class ProvidersController extends Controller
         $provider = Provider::find($id);
 
         return view('app.provider.add_provider', ['provider' => $provider, 'msg' => $msg]);
+    }
+
+    public function delete($id) {
+        Provider::find($id)->delete();
+        // Provider::find($id)->forceDelete();
+
+        
+        return redirect()->route('app.provider');
     }
 }
