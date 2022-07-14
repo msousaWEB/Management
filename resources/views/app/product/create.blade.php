@@ -18,7 +18,7 @@
         <div class="informacao-pagina">
             <div style="width: 30%; margin-left: auto; margin-right: auto;">
                 {{$msg ?? ''}}
-                <form method="POST" action="">
+                <form method="POST" action="{{route('product.store')}}">
                     @csrf
 
                     <select name="unit_id" id="">
