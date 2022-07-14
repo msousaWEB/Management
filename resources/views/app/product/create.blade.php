@@ -24,16 +24,19 @@
                     <select name="unit_id" id="">
                         <option value="">Selecione a unidade de Medida</option>
                         @foreach ($unit as $u)
-                            <option value="{{$u->id}}">{{$u->description}}</option>
+                            <option value="{{$u->id}}" {{old('unit_id') == $u->id ? 'selected' : ''}}>{{$u->description}}</option>
                         @endforeach
                     </select>
+                    {{$errors->has('unit_id') ? $errors->first('unit_id') : ''}}
 
-                    <input type="text" name="name" value="" class="borda-preta" placeholder="Nome">
+                    <input type="text" name="name" value="{{$provider->name ?? old('name')}}" class="borda-preta" placeholder="Nome">
+                    {{$errors->has('name') ? $errors->first('name') : ''}}
 
-                    <input type="text" name="description" value="" class="borda-preta" placeholder="Descrição">
+                    <input type="text" name="description" value="{{$provider->description ?? old('description')}}" class="borda-preta" placeholder="Descrição">
+                    {{$errors->has('description') ? $errors->first('description') : ''}}
 
-                    <input type="text" name="weight" value="" class="borda-preta" placeholder="Peso">
-
+                    <input type="text" name="weight" value="{{$provider->weight ?? old('weight')}}" class="borda-preta" placeholder="Peso">
+                    {{$errors->has('weight') ? $errors->first('weight') : ''}}
                     <button type="submit" class="borda-preta">Cadastrar</button>
                 </form>
             </div>
