@@ -22,19 +22,20 @@ Route::post('/login', 'LoginController@auth')->name('site.login');
 
 Route::middleware('authentication:default,visitor')->prefix('/app')->group(function () {
     Route::get('/customer', 'CustomerController@index')->name('app.customer');
-    Route::get('/provider', 'ProvidersController@index')->name('app.provider');
-    Route::get('/product', 'ProductController@index')->name('app.product');
     Route::get('/home', 'HomeController@index')->name('app.home');
     Route::get('/quit', 'LoginController@quit')->name('app.quit');
 
-    /////////////////////////////////////////////////////////////////
+    /////////////////////////////////PROVIDER////////////////////////////////
+    Route::get('/provider', 'ProvidersController@index')->name('app.provider');
     Route::post('/provider/list_provider', 'ProvidersController@list')->name('app.provider.list');
     Route::get('/provider/list_provider', 'ProvidersController@list')->name('app.provider.list');
     Route::get('/provider/add_provider', 'ProvidersController@add')->name('app.provider.add');
     Route::post('/provider/add_provider', 'ProvidersController@add')->name('app.provider.add');
     Route::get('/provider/edit_provider/{id}/{msg?}', 'ProvidersController@edit')->name('app.provider.edit');
     Route::get('/provider/delete_provider/{id}', 'ProvidersController@delete')->name('app.provider.delete');
-
+    
+    /////////////////////////////////PRODUCT/////////////////////////////////
+    Route::resource('product', 'ProductController');
 });
 
 // // TRABALHANDO COM REDIRECIONAMENTO
