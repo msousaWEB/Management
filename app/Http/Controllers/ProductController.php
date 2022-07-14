@@ -12,9 +12,11 @@ class ProductController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        $products = Product::paginate(10);
+
+        return view('app.product.index', ['products' => $products, 'request' => $request->all()]);
     }
 
     /**
