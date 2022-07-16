@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\ProductDetail;
+use App\Unit;
 use Illuminate\Http\Request;
 
 class ProductDetailController extends Controller
@@ -23,7 +25,8 @@ class ProductDetailController extends Controller
      */
     public function create()
     {
-        //
+        $unit = Unit::all();
+        return view('app.product_detail.create', ['unit' => $unit]);
     }
 
     /**
@@ -34,7 +37,8 @@ class ProductDetailController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        ProductDetail::create($request->all());
+        echo 'Sucesso!';
     }
 
     /**
