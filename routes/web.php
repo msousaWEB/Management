@@ -36,6 +36,9 @@ Route::middleware('authentication:default,visitor')->prefix('/app')->group(funct
     
     /////////////////////////////////PRODUCT/////////////////////////////////
     Route::resource('product', 'ProductController');
+
+    //DETAILS
+    Route::resource('product-detail', 'ProductDetailController');
 });
 
 // // TRABALHANDO COM REDIRECIONAMENTO
