@@ -36,7 +36,7 @@
                                 <td>{{$p->name}}</td>
                                 <td>{{$p->description}}</td>
                                 <td>{{$p->weight}}</td>
-                                <td><a href="{{route('app.provider.edit', $p->id)}}">Editar</a></td>
+                                <td><a href="{{route('product.edit', ['product' => $p->id])}}">Editar</a></td>
                                 <td><a href="{{route('product.show', ['product' => $p->id])}}">Visualizar</a></td>
                                 <td><a href="{{route('app.provider.delete', $p->id)}}">Excluir</a></td>
                             </tr>
