@@ -16,6 +16,9 @@
 
         <div class="informacao-pagina">
             <div style="width: 30%; margin-left: auto; margin-right: auto;">
+                <h4>Produto</h4>
+                <div>Nome: {{$product_detail->product->name}}</div><br>
+                <div>Descrição: {{$product_detail->product->description}}</div><br>
                 {{$msg ?? ''}}
                 @component('app.product_detail._components.form_create_edit', ['product_detail' => $product_detail, 'unit' => $unit])
                 @endcomponent
