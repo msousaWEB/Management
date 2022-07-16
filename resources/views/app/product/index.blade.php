@@ -24,6 +24,9 @@
                             <th>Nome</th>
                             <th>Descrição</th>
                             <th>Peso</th>
+                            <th>Comprimento</th>
+                            <th>Largura</th>
+                            <th>Altura</th>
                             <th></th>
                             <th></th>
                             <th></th>
@@ -36,6 +39,9 @@
                                 <td>{{$p->name}}</td>
                                 <td>{{$p->description}}</td>
                                 <td>{{$p->weight}} Kg</td>
+                                <td>{{$p->length ?? '-'}} </td>
+                                <td>{{$p->width ?? '-'}}</td>
+                                <td>{{$p->height ?? '-'}} </td>
                                 <td><a href="{{route('product.edit', ['product' => $p->id])}}">Editar</a></td>
                                 <td><a href="{{route('product.show', ['product' => $p->id])}}">Visualizar</a></td>
                                 <td>
