@@ -18,9 +18,9 @@
         <div class="informacao-pagina">
             <div style="width: 30%; margin-left: auto; margin-right: auto;">
                 {{$msg ?? ''}}
-                <form method="POST" action="">
+                <form method="POST" action="{{route('product.update', ['product' => $product->id])}}">
                     @csrf
-
+                    @method('PUT');
                     <select name="unit_id" id="">
                         <option value="">Selecione a unidade de Medida</option>
                         @foreach ($unit as $u)

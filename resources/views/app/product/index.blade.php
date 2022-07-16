@@ -35,10 +35,17 @@
                                 <td>{{$p->unit_id}}</td>
                                 <td>{{$p->name}}</td>
                                 <td>{{$p->description}}</td>
-                                <td>{{$p->weight}}</td>
+                                <td>{{$p->weight}} Kg</td>
                                 <td><a href="{{route('product.edit', ['product' => $p->id])}}">Editar</a></td>
                                 <td><a href="{{route('product.show', ['product' => $p->id])}}">Visualizar</a></td>
-                                <td><a href="{{route('app.provider.delete', $p->id)}}">Excluir</a></td>
+                                <td>
+                                    <form id="form_{{$p->id}}" method="POST" action="{{route('product.destroy', ['product' => $p->id])}}">
+                                        @method('DELETE')
+                                        @csrf
+                                        {{-- <button type="submit">Excluir</button> --}}
+                                        <a href="#" onclick="document.getElementById('form_{{$p->id}}').submit()">Excluir</a>
+                                    </form>
+                                </td>
                             </tr>
                         @endforeach
                     </tbody>
