@@ -58,9 +58,10 @@ class ProductDetailController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(ProductDetail $productDetail)
     {
-        //
+        $unit = Unit::all();
+        return view('app.product_detail.edit', ['product_detail' => $productDetail, 'unit' => $unit]);
     }
 
     /**
@@ -70,9 +71,10 @@ class ProductDetailController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, ProductDetail $productDetail)
     {
-        //
+        $productDetail->update($request->all());
+        echo 'Sucesso na atualização';
     }
 
     /**
