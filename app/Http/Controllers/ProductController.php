@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Item;
 use App\Product;
 use App\ProductDetail;
 use App\Unit;
@@ -16,17 +17,7 @@ class ProductController extends Controller
      */
     public function index(Request $request)
     {
-        $products = Product::paginate(10);
-
-        // foreach($products as $p => $product){
-        //     $productDetail = ProductDetail::where('product_id', $product->id)->first();
-
-        //     if(isset($productDetail)){
-        //         $products[$p]['length'] = $productDetail->length;
-        //         $products[$p]['width']  = $productDetail->width;
-        //         $products[$p]['height'] = $productDetail->height;
-        //     }
-        // }
+        $products = Item::with(['productDetail'])->paginate(10);
 
         return view('app.product.index', ['products' => $products, 'request' => $request->all()]);
     }

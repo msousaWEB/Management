@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\ItemDetail;
 use App\ProductDetail;
 use App\Unit;
 use Illuminate\Http\Request;
@@ -58,8 +59,9 @@ class ProductDetailController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(ProductDetail $productDetail)
+    public function edit($id)
     {
+        $productDetail = ItemDetail::find($id);
         $unit = Unit::all();
         return view('app.product_detail.edit', ['product_detail' => $productDetail, 'unit' => $unit]);
     }
