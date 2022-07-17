@@ -21,7 +21,6 @@ Route::get('/login/{error?}', 'LoginController@index')->name('site.login');
 Route::post('/login', 'LoginController@auth')->name('site.login');
 
 Route::middleware('authentication:default,visitor')->prefix('/app')->group(function () {
-    Route::get('/customer', 'CustomerController@index')->name('app.customer');
     Route::get('/home', 'HomeController@index')->name('app.home');
     Route::get('/quit', 'LoginController@quit')->name('app.quit');
 
@@ -34,11 +33,17 @@ Route::middleware('authentication:default,visitor')->prefix('/app')->group(funct
     Route::get('/provider/edit_provider/{id}/{msg?}', 'ProvidersController@edit')->name('app.provider.edit');
     Route::get('/provider/delete_provider/{id}', 'ProvidersController@delete')->name('app.provider.delete');
     
-    /////////////////////////////////PRODUCT/////////////////////////////////
+    /////////////////////////////////PRODUTOS/////////////////////////////////
     Route::resource('product', 'ProductController');
 
-    //DETAILS
+    //DETALHES
     Route::resource('product-detail', 'ProductDetailController');
+
+    /////////////////////////////////CLIENTES/////////////////////////////////
+    Route::resource('customer', 'CustomerController');
+    Route::resource('ordered', 'OrderedController');
+    Route::resource('ordered-product', 'OrderedProductController');
+
 });
 
 // // TRABALHANDO COM REDIRECIONAMENTO
