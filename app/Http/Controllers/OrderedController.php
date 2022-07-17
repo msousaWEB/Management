@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Customer;
 use App\Ordered;
 use Illuminate\Http\Request;
 
@@ -26,7 +27,9 @@ class OrderedController extends Controller
      */
     public function create()
     {
-        //
+        $customers = Customer::all();
+
+        return view('app.ordered.create', ['customers' => $customers]);
     }
 
     /**
@@ -37,7 +40,21 @@ class OrderedController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $rules = [
+            'customer_id' => 'exists:customers,id'
+        ];
+
+        $feedback = [
+            'customer_id.exists' => 'Este cliente não existe!'
+        ];
+
+        $request->validate($rules, $feedback);
+
+        $ordered = new Ordered();
+        $ordered->customer_id = $request->get('customer_id');
+        $ordered->save();
+
+        return redirect()->route('ordered.index');
     }
 
     /**

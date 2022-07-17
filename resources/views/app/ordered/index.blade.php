@@ -30,8 +30,8 @@
                     <tbody>
                         @foreach ($ordered as $o)
                             <tr>
-                                <td>{{$o->name}}</td>
-                                <td>{{$o->name}}</td>
+                                <td>{{$o->id}}</td>
+                                <td>{{$o->customer_id}}</td>
                                 <td><a href="{{route('ordered.edit', ['ordered' => $o->id])}}">Editar</a></td>
                                 <td><a href="{{route('ordered.show', ['ordered' => $o->id])}}">Visualizar</a></td>
                                 <td>
