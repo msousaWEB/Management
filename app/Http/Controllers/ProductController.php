@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Item;
 use App\Product;
 use App\ProductDetail;
+use App\Provider;
 use App\Unit;
 use Illuminate\Http\Request;
 
@@ -30,7 +31,8 @@ class ProductController extends Controller
     public function create()
     {
         $unit = Unit::all();
-        return view('app.product.create', ['unit' => $unit]);
+        $providers = Provider::all();
+        return view('app.product.create', ['unit' => $unit, 'providers' => $providers]);
     }
 
     /**
@@ -46,20 +48,22 @@ class ProductController extends Controller
             'description' => 'required|min:3|max:1000',
             'weight' => 'required|integer',
             'unit_id' => 'exists:units,id',
+            'provider_id' => 'exists:providers,id',
         ];
 
         $feedback = [
-            'required'          => 'É nescessário preencher o campo :attribute.',
-            'name.min'          => 'É nescessário conter no mínimo 3 caracteres.',
-            'name.max'          => 'É nescessário conter no máximo 40 caracteres.',
-            'description.min'   => 'A descrição deve conter no mínimo 3 caracteres.', 
-            'description.max'   => 'A descrição deve conter no máximo 1000 caracteres.', 
-            'weight.integer'    => 'O peso deve ser um número inteiro.', 
-            'unit_id.exists'    => 'Esta unidade de medida não foi registrada!', 
+            'required'              => 'É nescessário preencher o campo :attribute.',
+            'name.min'              => 'É nescessário conter no mínimo 3 caracteres.',
+            'name.max'              => 'É nescessário conter no máximo 40 caracteres.',
+            'description.min'       => 'A descrição deve conter no mínimo 3 caracteres.', 
+            'description.max'       => 'A descrição deve conter no máximo 1000 caracteres.', 
+            'weight.integer'        => 'O peso deve ser um número inteiro.', 
+            'unit_id.exists'        => 'Esta unidade de medida não foi registrada!', 
+            'provider_id.exists'    => 'Este fornecedor não existe!', 
         ];
 
         $request->validate($rules,$feedback);
-        Product::create($request->all());
+        Item::create($request->all());
         return redirect()->route('product.index');
     }
 
@@ -83,18 +87,39 @@ class ProductController extends Controller
     public function edit(Product $product)
     {
         $unit = Unit::all();
-        return view('app.product.edit', ['product' => $product, 'unit' => $unit]);
+        $providers = Provider::all();
+        return view('app.product.edit', ['product' => $product, 'unit' => $unit, 'providers' => $providers]);
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Product  $product
+     * @param  \App\Item  $product
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Product $product)
+    public function update(Request $request, Item $product)
     {
+
+        $rules = [
+            'name' => 'required|min:3|max:40',
+            'description' => 'required|min:3|max:1000',
+            'weight' => 'required|integer',
+            'unit_id' => 'exists:units,id',
+            'provider_id' => 'exists:providers,id',
+        ];
+
+        $feedback = [
+            'required'              => 'É nescessário preencher o campo :attribute.',
+            'name.min'              => 'É nescessário conter no mínimo 3 caracteres.',
+            'name.max'              => 'É nescessário conter no máximo 40 caracteres.',
+            'description.min'       => 'A descrição deve conter no mínimo 3 caracteres.', 
+            'description.max'       => 'A descrição deve conter no máximo 1000 caracteres.', 
+            'weight.integer'        => 'O peso deve ser um número inteiro.', 
+            'unit_id.exists'        => 'Esta unidade de medida não foi registrada!', 
+            'provider_id.exists'    => 'Este fornecedor não existe!', 
+        ];
+
         $product->update($request->all());
         return redirect()->route('product.show', ['product' => $product->id]);
     }
