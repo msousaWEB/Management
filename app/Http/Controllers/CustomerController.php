@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Customer;
 use Illuminate\Http\Request;
 
 class CustomerController extends Controller
@@ -11,9 +12,10 @@ class CustomerController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        return view('app.cliente');
+        $customers = Customer::paginate(10);
+        return view('app.customer.index', ['customers' => $customers, 'request' => $request->all()]);
     }
 
     /**
