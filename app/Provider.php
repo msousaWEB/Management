@@ -9,6 +9,10 @@ class Provider extends Model
 {
     use SoftDeletes;
     //
-    // protected $table = 'fornecedores';
+    protected $table = 'providers';
     protected $fillable = ['name', 'site', 'uf', 'email'];
+
+    public function products(){
+        return $this->hasMany('App\Item', 'provider_id', 'id');
+    }
 }

@@ -14,7 +14,7 @@ class ProvidersController extends Controller
     public function list(Request $request){
 
 
-        $providers = Provider::where('name', 'LIKE', '%'.$request->input('name').'%')
+        $providers = Provider::with(['products'])->where('name', 'LIKE', '%'.$request->input('name').'%')
         ->where('site', 'LIKE', '%'.$request->input('site').'%')
         ->where('uf', 'LIKE', '%'.$request->input('uf').'%')
         ->where('email', 'LIKE', '%'.$request->input('email').'%')

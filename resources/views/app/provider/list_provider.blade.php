@@ -38,6 +38,27 @@
                                 <td><a href="{{route('app.provider.edit', $p->id)}}">Editar</a></td>
                                 <td><a href="{{route('app.provider.delete', $p->id)}}">Excluir</a></td>
                             </tr>
+                            <tr>
+                                <td colspan="6">
+                                    <p>Lista de produtos</p>
+                                    <table border="1" style="margin: 20px">
+                                        <thead>
+                                            <tr>
+                                                <th>ID</th>
+                                                <th>Nome</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach ($p->products as $provider => $product)
+                                               <tr>
+                                                    <td>{{$product->id}}</td>
+                                                    <td>{{$product->name}}</td>
+                                               </tr>
+                                            @endforeach
+                                        </tbody>
+                                    </table>
+                                </td>
+                            </tr>
                         @endforeach
                     </tbody>
                 </table>
