@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Ordered;
 use Illuminate\Http\Request;
 
 class OrderedController extends Controller
@@ -11,9 +12,11 @@ class OrderedController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        $ordered = Ordered::paginate(10);
+
+        return view('app.ordered.index', ['ordered' => $ordered, 'request' => $request->all()]);
     }
 
     /**
