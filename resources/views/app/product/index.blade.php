@@ -23,6 +23,7 @@
                             <th>ID</th>
                             <th>Nome</th>
                             <th>Descrição</th>
+                            <th>Fornecedor</th>
                             <th>Peso</th>
                             <th>Comprimento</th>
                             <th>Largura</th>
@@ -38,6 +39,7 @@
                                 <td>{{$p->unit_id}}</td>
                                 <td>{{$p->name}}</td>
                                 <td>{{$p->description}}</td>
+                                <td>{{$p->provider->name}}</td>
                                 <td>{{$p->weight}} Kg</td>
                                 <td>{{$p->productDetail->length ?? '-'}} </td>
                                 <td>{{$p->productDetail->width ?? '-'}}</td>
