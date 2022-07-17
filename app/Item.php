@@ -16,4 +16,8 @@ class Item extends Model
     public function provider(){
         return $this->belongsTo('App\Provider');
     }
+
+    public function ordered(){
+        return $this->belongsToMany('App\Ordered', 'ordered_products', 'product_id' , 'ordered_id');
+    }
 }

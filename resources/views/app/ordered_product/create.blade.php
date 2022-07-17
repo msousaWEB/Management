@@ -26,6 +26,7 @@
                         <tr>
                             <th>ID</th>
                             <th>Produto</th>
+                            <th>Data de criação do pedido</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -33,6 +34,7 @@
                             <tr>
                                 <td>{{$p->id}}</td>
                                 <td>{{$p->name}}</td>
+                                <td>{{$p->pivot->created_at->format('d/m/y')}}</td>
                             </tr>
                         @endforeach
                     </tbody>

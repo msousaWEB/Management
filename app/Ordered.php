@@ -8,6 +8,6 @@ class Ordered extends Model
 {
     public function products(){
         // return $this->belongsToMany('App\Product', 'ordered_products');
-        return $this->belongsToMany('App\Item', 'ordered_products','ordered_id','product_id');
+        return $this->belongsToMany('App\Item', 'ordered_products','ordered_id','product_id')->withPivot('created_at');
     }
 }
