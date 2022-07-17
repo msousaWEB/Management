@@ -42,7 +42,9 @@ Route::middleware('authentication:default,visitor')->prefix('/app')->group(funct
     /////////////////////////////////CLIENTES/////////////////////////////////
     Route::resource('customer', 'CustomerController');
     Route::resource('ordered', 'OrderedController');
-    Route::resource('ordered-product', 'OrderedProductController');
+    // Route::resource('ordered-product', 'OrderedProductController');
+    Route::get('ordered-product/create/{ordered}', 'OrderedProductController@create')->name('ordered-product.create');
+    Route::post('ordered-product/store/{ordered}', 'OrderedProductController@store')->name('ordered-product.store');
 
 });
 

@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Ordered;
+use App\OrderedProduct;
+use App\Product;
 use Illuminate\Http\Request;
 
 class OrderedProductController extends Controller
@@ -21,9 +24,11 @@ class OrderedProductController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Ordered $ordered)
     {
-        //
+        $products = Product::all();
+        // $ordered->products;
+        return view('app.ordered_product.create', ['ordered' => $ordered, 'products' => $products]);
     }
 
     /**
@@ -32,9 +37,24 @@ class OrderedProductController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, Ordered $ordered)
     {
-        //
+        $rules = [
+            'product_id' => 'exists:products,id'
+        ];
+
+        $feedback = [
+            'product_id.exists' => 'O produto informado não existe'
+        ];
+
+        $request->validate($rules, $feedback);
+
+        $oreredProduct = new OrderedProduct();
+        $oreredProduct->ordered_id = $ordered->id;
+        $oreredProduct->product_id = $request->get('product_id');
+        $oreredProduct->save();
+
+        return redirect()->route('ordered-product.create', ['ordered' => $ordered->id]);
     }
 
     /**

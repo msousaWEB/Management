@@ -25,6 +25,7 @@
                             <th></th>
                             <th></th>
                             <th></th>
+                            <th></th>
                         </tr>
                     </thead>
                     <tbody>
@@ -32,6 +33,7 @@
                             <tr>
                                 <td>{{$o->id}}</td>
                                 <td>{{$o->customer_id}}</td>
+                                <td><a href="{{route('ordered-product.create', ['ordered' => $o->id])}}">Adicionar Produtos</a></td>
                                 <td><a href="{{route('ordered.edit', ['ordered' => $o->id])}}">Editar</a></td>
                                 <td><a href="{{route('ordered.show', ['ordered' => $o->id])}}">Visualizar</a></td>
                                 <td>
