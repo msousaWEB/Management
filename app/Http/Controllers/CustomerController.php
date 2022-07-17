@@ -25,7 +25,7 @@ class CustomerController extends Controller
      */
     public function create()
     {
-        //
+        return view('app.customer.create');
     }
 
     /**
@@ -36,7 +36,23 @@ class CustomerController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $rules = [
+            'name' => 'required|min:3|max:40'
+        ];
+
+        $feedback = [
+            'required' => 'Cadastre um nome para o usuário!',
+            'name.min' => 'O nome deve ter no mínimo 3 caracteres.',
+            'name.max' => 'O nome deve ter no máximo 40 caracteres.',
+        ];
+
+        $request->validate($rules, $feedback);
+
+        $customer = new Customer();
+        $customer->name = $request->get('name');
+        $customer->save();
+
+        return redirect()->route('customer.index');
     }
 
     /**
