@@ -40,19 +40,26 @@ class OrderedProductController extends Controller
     public function store(Request $request, Ordered $ordered)
     {
         $rules = [
-            'product_id' => 'exists:products,id'
+            'product_id' => 'exists:products,id',
+            'quantity' => 'required|min:1'
         ];
 
         $feedback = [
-            'product_id.exists' => 'O produto informado não existe'
+            'product_id.exists' => 'O produto informado não existe',
+            'quantity.min' => 'Deve haver pelomenos 1 produto',
+            'required' => 'Este campo é obrigatório'
         ];
 
         $request->validate($rules, $feedback);
 
-        $oreredProduct = new OrderedProduct();
-        $oreredProduct->ordered_id = $ordered->id;
-        $oreredProduct->product_id = $request->get('product_id');
-        $oreredProduct->save();
+        // $oreredProduct = new OrderedProduct();
+        // $oreredProduct->ordered_id = $ordered->id;
+        // $oreredProduct->product_id = $request->get('product_id');
+        // $oreredProduct->save();
+
+        $ordered->products()->attach([
+            $request->get('product_id') => ['quantity' => $request->get('quantity')]
+        ]);
 
         return redirect()->route('ordered-product.create', ['ordered' => $ordered->id]);
     }
