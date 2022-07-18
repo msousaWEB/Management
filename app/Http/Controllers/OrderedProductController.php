@@ -104,10 +104,10 @@ class OrderedProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Ordered $ordered, Product $product)
+    public function destroy(OrderedProduct $orderedProduct, $ordered_id)
     {
-        $ordered->products()->detach($product->id);
+        $orderedProduct->delete();
 
-        return redirect()->route('ordered-product.create', ['ordered' => $ordered->id]);
+        return redirect()->route('ordered-product.create', ['ordered' => $ordered_id]);
     }
 }
