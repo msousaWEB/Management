@@ -45,6 +45,7 @@ Route::middleware('authentication:default,visitor')->prefix('/app')->group(funct
     // Route::resource('ordered-product', 'OrderedProductController');
     Route::get('ordered-product/create/{ordered}', 'OrderedProductController@create')->name('ordered-product.create');
     Route::post('ordered-product/store/{ordered}', 'OrderedProductController@store')->name('ordered-product.store');
+    Route::delete('ordered-product.destroy/{ordered}/{product}', 'OrderedProductController@destroy')->name('ordered-product.destroy');
 
 });
 

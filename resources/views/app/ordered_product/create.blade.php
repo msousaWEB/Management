@@ -27,6 +27,7 @@
                             <th>ID</th>
                             <th>Produto</th>
                             <th>Data de criação do pedido</th>
+                            <th></th>
                         </tr>
                     </thead>
                     <tbody>
@@ -35,6 +36,13 @@
                                 <td>{{$p->id}}</td>
                                 <td>{{$p->name}}</td>
                                 <td>{{$p->pivot->created_at->format('d/m/y')}}</td>
+                                <td>
+                                    <form action="{{route('ordered-product.destroy', ['ordered' => $ordered->id, 'product' => $p->id])}}" id="form_{{$ordered->id}}_{{$p->id}}" method="POST">
+                                        @method('DELETE')
+                                        @csrf
+                                        <a href="#" onclick="document.getElementById('form_{{$ordered->id}}_{{$p->id}}').submit()">Excluir</a>
+                                    </form>
+                                </td>
                             </tr>
                         @endforeach
                     </tbody>
